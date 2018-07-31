@@ -15,7 +15,7 @@ import { map } from 'lodash'
 import {
   validateRequired,
   validateEmail,
-  validateMustBeNumber,
+  validateIsNumber,
   validateMinLength,
   validateMaxLength,
   validateAbove18,
@@ -277,7 +277,7 @@ const ExampleForm = ({
             component={InputAdapter}
             validate={composeValidators(
               validateRequired(),
-              validateMustBeNumber(),
+              validateIsNumber(),
               validateAbove18
             )}
             // Non-FieldProps Passed to Reactstrap Component
