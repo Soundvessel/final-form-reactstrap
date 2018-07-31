@@ -94,13 +94,13 @@ const onSubmit = async values => {
 
   // form error condition that adds field and form level errors
   if (includes(values.checkboxes, 'two')) {
-    // field errors are added by adding message with key of field name
+    // field errors are added by adding message with key of field name and will display under field
     formErrors['checkboxes'] = 'This selection created a submission error.'
     // form error alerts are pushed to [FORM_ERROR] array
     formErrors[FORM_ERROR].push(
       'You clicked a checkbox above that triggered a submission error.'
     )
-    formErrors[FORM_ERROR].push('Another error.')
+    formErrors[FORM_ERROR].push('Testing multiple submission errors.')
   }
 
   // if errors, return them
@@ -152,7 +152,17 @@ class ExampleFormContainer extends React.Component {
       <Form
         onSubmit={onSubmit}
         initialValues={this.state.data}
-        subscription={{ submitting: true, pristine: true, submitError: true }} // Subscription Performance Optimization
+        /**
+         * @see https://github.com/final-form/react-final-form#-performance-optimization-through-subscriptions-
+         */
+        subscription={{
+          hasSubmitErrors: true,
+          hasValidationErrors: true,
+          pristine: true,
+          submitError: true,
+          submitFailed: true,
+          submitting: true
+        }} // Subscription Performance Optimization
         component={ExampleForm}
         formID={formID}
         optionsFoods={optionsFoods} // dynamic options pass through container lile this

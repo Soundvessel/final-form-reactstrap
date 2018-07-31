@@ -30,11 +30,14 @@ import optionsStates from '../data/states'
 const ExampleForm = ({
   formID,
   handleSubmit,
+  hasSubmitErrors,
+  hasValidationErrors,
   optionsFoods,
   meta,
   reset,
   pristine,
   submitError,
+  submitFailed,
   submitting,
   values,
   ...rest
@@ -338,19 +341,25 @@ const ExampleForm = ({
       />
       <FormFeedbackAdapter name="hatefoods" />
     </FormGroup>
-    {submitError &&
+    {// Submission Errors Alerts
+    submitError &&
       map(submitError, (errorMsg, index) => (
-        <Alert key={`${formID}-errorAlert-${index}`} color="danger">
+        <Alert key={`${formID}-submitError-${index}`} color="danger">
           {errorMsg}
         </Alert>
       ))}
+    {// Field-Level Errors Alert
+    hasValidationErrors &&
+      submitFailed && (
+        <Alert color="danger">Please fix the above errors.</Alert>
+      )}
     <div className="pt-2 text-right">
       <Button
         type="button"
         color="link"
         onClick={reset}
         disabled={submitting || pristine}
-        hidden={submitting || pristine}
+        hidden={pristine}
         className="mr-3"
       >
         Reset
@@ -359,7 +368,7 @@ const ExampleForm = ({
         type="submit"
         size="lg"
         color="success"
-        disabled={submitting}
+        disabled={pristine || hasSubmitErrors || submitting}
         className="px-5"
       >
         Submit
