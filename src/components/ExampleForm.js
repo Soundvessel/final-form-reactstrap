@@ -341,6 +341,11 @@ const ExampleForm = ({
       />
       <FormFeedbackAdapter name="hatefoods" />
     </FormGroup>
+    {// Alert user of field-level client-side errors on submission attempt
+    hasValidationErrors &&
+      submitFailed && (
+        <Alert color="danger">Please fix the above errors.</Alert>
+      )}
     {// Submission Errors Alerts
     submitError &&
       map(submitError, (errorMsg, index) => (
@@ -348,11 +353,6 @@ const ExampleForm = ({
           {errorMsg}
         </Alert>
       ))}
-    {// Field-Level Errors Alert
-    hasValidationErrors &&
-      submitFailed && (
-        <Alert color="danger">Please fix the above errors.</Alert>
-      )}
     <div className="pt-2 text-right">
       <Button
         type="button"
