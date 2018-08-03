@@ -1,5 +1,7 @@
 import React from 'react'
 import { Field, FormSpy } from 'react-final-form'
+import { map } from 'lodash'
+// Reactstrap
 import {
   Alert,
   Button,
@@ -11,7 +13,11 @@ import {
   Label,
   Row
 } from 'reactstrap'
-import { map } from 'lodash'
+// Final-Form to Reactstrap Adapters
+import { FormFeedbackAdapter, InputAdapter, SelectAdapter } from './ffadapters'
+// Final-Form Helpers
+import { SubmitErrorAlerts, ValidationErrorAlert } from './ffhelpers'
+// Validators
 import {
   validateRequired,
   validateEmail,
@@ -23,8 +29,7 @@ import {
   validateMatch,
   composeValidators
 } from '../lib/validators'
-import { FormFeedbackAdapter, InputAdapter, SelectAdapter } from './ff2rs'
-
+// Option Data
 import optionsStates from '../data/states'
 
 const ExampleForm = ({
@@ -156,9 +161,11 @@ const ExampleForm = ({
         Check this single checkbox with a long label name that likely would like
         to terms and privacy fine print etc.
       </Label>
-      {
-        // Example where we don't use FormFeedbackAdapter
-      }
+      {/**
+       * Example of using the FormFeedback component directly. This doesn't allow
+       * for the error message from final-form to be used but you can use the
+       * field invalid state to display your own.
+       */}
       <FormFeedback>I said check this!</FormFeedback>
     </FormGroup>
     <FormGroup tag="fieldset">
@@ -341,18 +348,11 @@ const ExampleForm = ({
       />
       <FormFeedbackAdapter name="hatefoods" />
     </FormGroup>
-    {// Alert user of field-level client-side errors on submission attempt
-    hasValidationErrors &&
-      submitFailed && (
-        <Alert color="danger">Please fix the above errors.</Alert>
-      )}
-    {// Submission Errors Alerts
-    submitError &&
-      map(submitError, (errorMsg, index) => (
-        <Alert key={`${formID}-submitError-${index}`} color="danger">
-          {errorMsg}
-        </Alert>
-      ))}
+    <ValidationErrorAlert
+      hasValidationErrors={hasValidationErrors}
+      submitFailed={submitFailed}
+    />
+    <SubmitErrorAlerts submitError={submitError} />
     <div className="pt-2 text-right">
       <Button
         type="button"
