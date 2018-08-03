@@ -1,14 +1,12 @@
 {
   "name": "react-final-form-with-bootstrap-4",
   "version": "1.0.0",
-  "description":
-    "This example demonstrates several concepts from React Final Form applied to Bootstrap 4 components from Reactstrap.",
+  "description": "This example demonstrates several concepts from React Final Form applied to Bootstrap 4 components from Reactstrap.",
   "keywords": [
-    "reactstrap",
+    "finalform",
     "bootstrap",
-    "final form",
     "react",
-    "react final form"
+    "validation"
   ],
   "main": "src/index.js",
   "dependencies": {

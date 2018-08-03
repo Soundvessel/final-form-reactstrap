@@ -153,7 +153,8 @@ const ExampleForm = ({
         id={`${formID}-confirm`}
       />
       <Label htmlFor={`${formID}-confirm`} check>
-        Check this single checkbox
+        Check this single checkbox with a long label name that likely would like
+        to terms and privacy fine print etc.
       </Label>
       {
         // Example where we don't use FormFeedbackAdapter
@@ -166,7 +167,7 @@ const ExampleForm = ({
         <Field
           name="checkboxes"
           component={InputAdapter}
-          // checkbox/radio groups only need validation in first field of group? @todo
+          // checkbox/radio groups only need validation in first field of group?
           validate={validateRequired()}
           value="one"
           // Non-FieldProps Passed to Reactstrap Component
@@ -181,8 +182,7 @@ const ExampleForm = ({
         <Field
           name="checkboxes"
           component={InputAdapter}
-          // checkbox/radio groups only need validation in first field of group? @todo
-          validate={validateRequired()}
+          // checkbox/radio groups only need validation in first field of group
           value="two"
           // Non-FieldProps Passed to Reactstrap Component
           type="checkbox"
@@ -201,7 +201,7 @@ const ExampleForm = ({
         <Field
           name="radios"
           component={InputAdapter}
-          // checkbox/radio groups only need validation in first field of group? @todo
+          // checkbox/radio groups only need validation in first field of group?
           validate={composeValidators(validateRequired(), validateIsThree)}
           value="one"
           // Non-FieldProps Passed to Reactstrap Component
@@ -253,9 +253,9 @@ const ExampleForm = ({
         </Label>
       </FormGroup>
       {/* 
-                  FormFeedback not adjacent and after input:invalid (like for these inline radios) requires custom implementation to force display.
-                  Simply combine display logic with the display of the element and force the element display with the "d-block" utility class.
-                */}
+          FormFeedback not adjacent and after input:invalid (like for these inline radios) requires custom implementation to force display.
+          Simply combine display logic with the display of the element and force the element display with the "d-block" utility class.
+        */}
       <Field
         name="radios"
         subscription={{ touched: true, error: true, submitError: true }}
@@ -368,7 +368,7 @@ const ExampleForm = ({
         type="submit"
         size="lg"
         color="success"
-        disabled={pristine || hasSubmitErrors || submitting}
+        disabled={pristine || submitting}
         className="px-5"
       >
         Submit

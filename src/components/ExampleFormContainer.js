@@ -133,7 +133,6 @@ class ExampleFormContainer extends React.Component {
       email: 'test@test.com',
       //password: '12345678',
       desc: 'This is a saved description.',
-      confirm: true,
       checkboxes: ['two'],
       radios: 'three',
       age: 47,
